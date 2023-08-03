@@ -13,6 +13,7 @@
 		6E6664452A732AA60074A80B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E6664432A732AA60074A80B /* Main.storyboard */; };
 		6E6664472A732AA70074A80B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E6664462A732AA70074A80B /* Assets.xcassets */; };
 		6E66644A2A732AA70074A80B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E6664482A732AA70074A80B /* LaunchScreen.storyboard */; };
+		AE2F37032A7C525E00C26424 /* CityHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2F37022A7C525E00C26424 /* CityHistoryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6E6664462A732AA70074A80B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E6664492A732AA70074A80B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E66644B2A732AA70074A80B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE2F37022A7C525E00C26424 /* CityHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityHistoryController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				6E6664462A732AA70074A80B /* Assets.xcassets */,
 				6E6664482A732AA70074A80B /* LaunchScreen.storyboard */,
 				6E66644B2A732AA70074A80B /* Info.plist */,
+				AE2F37022A7C525E00C26424 /* CityHistoryController.swift */,
 			);
 			path = Weatherverse;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E6664422A732AA60074A80B /* ViewController.swift in Sources */,
+				AE2F37032A7C525E00C26424 /* CityHistoryController.swift in Sources */,
 				6E66643E2A732AA60074A80B /* AppDelegate.swift in Sources */,
 				6E6664402A732AA60074A80B /* SceneDelegate.swift in Sources */,
 			);

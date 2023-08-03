@@ -56,7 +56,7 @@
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="btnCitiesClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bBR-aT-91S"/>
+                                            <action selector="btnCitiesClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dp0-wp-Au1"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="partly cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF7-J7-Mac">
@@ -105,8 +105,7 @@
                                                     <segment title="F"/>
                                                 </segments>
                                                 <connections>
-                                                    <action selector="onTempUnitChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="6sd-zS-z1Q"/>
-                                                    <action selector="onTemperatureUnitChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="PqQ-u0-uBB"/>
+                                                    <action selector="onTempUnitChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="vJA-dS-lje"/>
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
@@ -154,11 +153,55 @@
                         <outlet property="txtSearch" destination="1cW-GW-a0x" id="o3u-2G-z6M"/>
                         <outlet property="weatherCondition" destination="kF7-J7-Mac" id="Vd7-zl-wgw"/>
                         <outlet property="weatherIcon" destination="Heb-0w-EDE" id="cQq-ta-v92"/>
+                        <segue destination="439-Bg-s4q" kind="show" identifier="goToCities" id="rpF-r5-dh4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="49.618320610687022" y="3.5211267605633805"/>
+        </scene>
+        <!--City History Controller-->
+        <scene sceneID="5Dk-Ih-5Op">
+            <objects>
+                <viewController id="439-Bg-s4q" customClass="CityHistoryController" customModule="Weatherverse" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TKK-vB-fnb">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="o5Q-Cz-B4c">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="citiesViewCell" id="nsy-8Q-yxn">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nsy-8Q-yxn" id="cKe-Na-zdb">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nE7-3J-SRy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nE7-3J-SRy" firstAttribute="trailing" secondItem="o5Q-Cz-B4c" secondAttribute="trailing" id="AOI-OD-fho"/>
+                            <constraint firstItem="o5Q-Cz-B4c" firstAttribute="leading" secondItem="nE7-3J-SRy" secondAttribute="leading" id="K4a-bQ-C0n"/>
+                            <constraint firstItem="o5Q-Cz-B4c" firstAttribute="top" secondItem="nE7-3J-SRy" secondAttribute="top" id="W1o-B2-Xil"/>
+                            <constraint firstItem="o5Q-Cz-B4c" firstAttribute="centerY" secondItem="TKK-vB-fnb" secondAttribute="centerY" id="bXD-ct-6IW"/>
+                            <constraint firstItem="o5Q-Cz-B4c" firstAttribute="centerX" secondItem="TKK-vB-fnb" secondAttribute="centerX" id="pEH-J7-xVM"/>
+                            <constraint firstItem="nE7-3J-SRy" firstAttribute="bottom" secondItem="o5Q-Cz-B4c" secondAttribute="bottom" id="qeT-Jg-mw1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tkr-bN-P8q"/>
+                    <connections>
+                        <outlet property="citiesTableView" destination="o5Q-Cz-B4c" id="HNs-3Y-ZcL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Png-zP-ilg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="999" y="4"/>
         </scene>
     </scenes>
     <resources>
