@@ -135,7 +135,6 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
                 isDay: locationWrapper.current.is_day
             )
             
-            
             searchHistory.history.append(weatherData)
             
             DispatchQueue.main.async {
@@ -148,10 +147,12 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         }
     }
     
+    
+    
     func getUrl(_ location:String)->URL{
         
         let baseUrl="https://api.weatherapi.com/v1/current.json"
-        let key="77e5f75f374648998f2225455232707"
+        let key="a753f78778fb409bab4235010230108"
         let locationParam = location.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let endPoint:String = "\(baseUrl)?q=\(locationParam)&key=\(key)"
         
