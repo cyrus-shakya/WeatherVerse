@@ -216,7 +216,7 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
     
     @IBAction func btnCitiesClicked(_ sender: UIButton) {
         
-        
+        print("Cities page clicked")
     }
     
     
