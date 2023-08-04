@@ -20,15 +20,15 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
     var locationManager: CLLocationManager?
     
     struct CurrentLocationWrapper: Decodable {
-        let location:locationData
-        let current: currentLocationData
+        let location:locationName
+        let current: currentLocation
     }
     
-    struct locationData: Decodable {
+    struct locationName: Decodable {
         let name: String
     }
     
-    struct currentLocationData: Decodable {
+    struct currentLocation: Decodable {
         let temp_c: Double
         let temp_f: Double
         let is_day: Int
@@ -40,18 +40,17 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         let code: Int
     }
     
-    
-    struct WeatherData {
+    struct WeatherDetail {
         let locationName: String
-        let tempCelsius: Double
-        let tempFahrenheit: Double
+        let tempInCelsius: Double
+        let tempInFahrenheit: Double
         let conditionText: String
         let conditionCode: Int
         let isDay: Int
     }
     
-    struct SearchHistory{
-        var history:[WeatherData]
+    struct CityHistory{
+        var history:[WeatherDetail]
     }
     
     
@@ -63,7 +62,7 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         
         initWeatherIcon()
         
-        setupLocationManager()
+        initLocationManager()
     }
     
     func initWeatherIcon(){
@@ -72,12 +71,12 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         weatherIcon.preferredSymbolConfiguration = config
         
         // setting img from system SF symbols
-        weatherIcon.image = UIImage(systemName: "cloud.sun.fill")
+        weatherIcon.image = UIImage(systemName: "cloud.sun")
     }
     
     
     //    current location
-    func setupLocationManager() {
+    func initLocationManager() {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
@@ -96,7 +95,7 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
             let longitude = location.coordinate.longitude
             print("Latitude: \(latitude)\nLongitude: \(longitude)")
             
-            searchWeather("\(latitude),\(longitude)")
+            searchWeatherApiHandler("\(latitude),\(longitude)")
             
         }
         locationManager?.stopUpdatingLocation()
@@ -107,98 +106,7 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
     }
     
     
-    var searchHistory = SearchHistory(history: [])
-    
-    func parseWeather(data: Data) -> CurrentLocationWrapper? {
-        let decoder = JSONDecoder()
-        var wrapper: CurrentLocationWrapper?
-        
-        do{
-            wrapper = try decoder.decode(CurrentLocationWrapper.self, from: data)
-        }
-        catch{
-            print (error)
-        }
-        return wrapper
-    }
-    
-    func getWeatherData(data:Data?,response:URLResponse?,error:Error?){
-        
-        guard error == nil else{
-            print(error ?? "there is a error")
-            return
-        }
-        
-        guard let data = data else{
-            print("No data received")
-            return
-        }
-        
-        
-        if let locationWrapper = parseWeather(data: data){
-            //            print(locationWrapper.location.name)
-            
-            let weatherData = WeatherData(
-                locationName: locationWrapper.location.name,
-                tempCelsius: locationWrapper.current.temp_c,
-                tempFahrenheit: locationWrapper.current.temp_f,
-                conditionText: locationWrapper.current.condition.text,
-                conditionCode: locationWrapper.current.condition.code,
-                isDay: locationWrapper.current.is_day
-            )
-            
-            searchHistory.history.append(weatherData)
-            
-            DispatchQueue.main.async {
-                self.temperatureLabel.text = String(weatherData.tempCelsius)
-                self.weatherCondition.text = weatherData.conditionText
-                self.cityLabel.text = weatherData.locationName
-                self.bgImg.image = UIImage(named: locationWrapper.current.is_day == 0 ? "night_time": "bg")
-                self.changeWeatherIcon(locationWrapper.current.condition.code)
-            }
-            
-        }
-    }
-    
-    func changeWeatherIcon(_ weatherCode:Int){
-        
-        var conditionName: String{
-             switch weatherCode{
-             case 1000:
-                 return "sun.max.fill"
-             case 1003...1009:
-                 return "cloud.fill"
-             case 1030:
-                 return "cloud.fog.fill"
-             case 1183...1207:
-                 return "cloud.rain.fill"
-             case 1210...1237:
-                 return "cloud.snow.fill"
-             case 1273...1282:
-                 return "cloud.bolt.rain"
-             default:
-                 return "cloud.sun.fill"
-             }
-         }
-        
-        weatherIcon.image = UIImage(systemName: conditionName)
-        
-    }
-    
-    
-    
-    func getUrl(_ location:String)->URL{
-        
-        let baseUrl="https://api.weatherapi.com/v1/current.json"
-        let key="a753f78778fb409bab4235010230108"
-        let locationParam = location.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let endPoint:String = "\(baseUrl)?q=\(locationParam)&key=\(key)"
-        
-        return URL(string: endPoint) ?? URL(string: "")!
-    }
-    
-    
-    func searchWeather(_ txtSearch: String){
+    func searchWeatherApiHandler(_ txtSearch: String){
         // 1. Create URL
         let url: URL? = getUrl(txtSearch)
         
@@ -215,34 +123,124 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         }
     }
     
+    func getUrl(_ location:String)->URL{
+        
+        let baseUrl="https://api.weatherapi.com/v1/current.json"
+        let key="a753f78778fb409bab4235010230108"
+        let locationParameter = location.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let endPoint:String = "\(baseUrl)?q=\(locationParameter)&key=\(key)"
+        
+        return URL(string: endPoint) ?? URL(string: "")!
+    }
+    
+    var searchCityHistory = CityHistory(history: [])
+    
+    func getWeatherData(data:Data?,response:URLResponse?,error:Error?){
+        
+        guard error == nil else{
+            print(error ?? "there is a error")
+            return
+        }
+        
+        guard let data = data else{
+            print("No data received")
+            return
+        }
+        
+        
+        if let locationWrapper = parseWeather(data: data){
+            
+            let weatherData = WeatherDetail(
+                locationName: locationWrapper.location.name,
+                tempInCelsius: locationWrapper.current.temp_c,
+                tempInFahrenheit: locationWrapper.current.temp_f,
+                conditionText: locationWrapper.current.condition.text,
+                conditionCode: locationWrapper.current.condition.code,
+                isDay: locationWrapper.current.is_day
+            )
+            
+            searchCityHistory.history.append(weatherData)
+            
+            DispatchQueue.main.async {
+                self.temperatureLabel.text = String(weatherData.tempInCelsius)
+                self.weatherCondition.text = weatherData.conditionText
+                self.cityLabel.text = weatherData.locationName
+                self.bgImg.image = UIImage(named: locationWrapper.current.is_day == 0 ? "night_time": "bg")
+                self.changeWeatherIcon(locationWrapper.current.condition.code)
+            }
+            
+        }
+        
+    }
+    
+    
+    func parseWeather(data: Data) -> CurrentLocationWrapper? {
+        let decoder = JSONDecoder()
+        var wrapper: CurrentLocationWrapper?
+        
+        do{
+            wrapper = try decoder.decode(CurrentLocationWrapper.self, from: data)
+        }
+        catch{
+            print (error)
+        }
+        return wrapper
+    }
+    
+    
+    
+    func changeWeatherIcon(_ weatherCode:Int){
+        
+        var conditionName: String{
+            switch weatherCode{
+            case 1000:
+                return "sun.max.fill"
+            case 1003...1009:
+                return "cloud.fill"
+            case 1030:
+                return "cloud.fog.fill"
+            case 1183...1207:
+                return "cloud.rain.fill"
+            case 1210...1237:
+                return "cloud.snow.fill"
+            case 1273...1282:
+                return "cloud.bolt.rain"
+            default:
+                return "cloud.sun.fill"
+            }
+        }
+        
+        weatherIcon.image = UIImage(systemName: conditionName)
+        
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        searchWeather(txtSearch.text ?? "")
+        searchWeatherApiHandler(txtSearch.text ?? "")
         return true
     }
     
     
     
     @IBAction func btnSearchClicked(_ sender: UIButton) {
-        
-        searchWeather(txtSearch.text ?? "")
+        searchWeatherApiHandler(txtSearch.text ?? "")
     }
     
     
     @IBAction func onTempUnitChanged(_ sender: UISegmentedControl) {
-        guard let weatherData = searchHistory.history.last else {
-                    return
-                }
-
-                switch sender.selectedSegmentIndex {
-                case 0:
-                    temperatureLabel.text = String(weatherData.tempCelsius)
-                case 1:
-                    temperatureLabel.text = String(weatherData.tempFahrenheit)
-                default:
-                    break
-                }
+        guard let weatherData = searchCityHistory.history.last else {
+            return
+        }
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            temperatureLabel.text = String(weatherData.tempInCelsius)
+        case 1:
+            temperatureLabel.text = String(weatherData.tempInFahrenheit)
+        default:
+            break
+        }
     }
     
     @IBAction func btnCitiesClicked(_ sender: UIButton) {
@@ -250,15 +248,15 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "goToCities" {
-                if let citiesViewController = segue.destination as? CityHistoryController {
-                    citiesViewController.citiesArray = searchHistory.history
-                }
+        if segue.identifier == "goToCities" {
+            if let citiesViewController = segue.destination as? CityHistoryController {
+                citiesViewController.citiesArray = searchCityHistory.history
             }
         }
+    }
     
 }
-    
-    
-    
+
+
+
 
