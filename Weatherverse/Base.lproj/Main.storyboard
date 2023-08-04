@@ -29,6 +29,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4x-jk-xwD">
                                         <rect key="frame" x="272" y="0.0" width="49.666666666666686" height="34.333333333333336"/>
+                                        <color key="tintColor" red="0.43529411759999997" green="0.76078431369999999" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
                                         <connections>
@@ -37,6 +38,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqU-u1-yqh">
                                         <rect key="frame" x="323.66666666666669" y="0.0" width="49.333333333333314" height="34.333333333333336"/>
+                                        <color key="tintColor" red="0.43529411759999997" green="0.76078431369999999" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="location.fill" catalog="system"/>
                                         <connections>
@@ -46,11 +48,11 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bHD-34-PS8" userLabel="Cities">
-                                <rect key="frame" x="30" y="123.33333333333333" width="333" height="37.333333333333329"/>
+                                <rect key="frame" x="30" y="123.33333333333331" width="333" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phG-oj-0gq">
-                                        <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="37.333333333333336"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="50"/>
+                                        <color key="tintColor" red="0.43529411764705883" green="0.76078431372549016" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Cities">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -59,16 +61,16 @@
                                             <action selector="btnCitiesClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dp0-wp-Au1"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="partly cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF7-J7-Mac">
-                                        <rect key="frame" x="217.66666666666666" y="0.0" width="115.33333333333334" height="37.333333333333336"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF7-J7-Mac">
+                                        <rect key="frame" x="217.66666666666666" y="0.0" width="115.33333333333334" height="50"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.43529411759999997" green="0.76078431369999999" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eVP-l4-z6c" userLabel="Weather">
-                                <rect key="frame" x="156" y="190.66666666666666" width="217" height="332.66666666666674"/>
+                                <rect key="frame" x="156" y="203.33333333333337" width="217" height="346"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="suncloud" translatesAutoresizingMaskIntoConstraints="NO" id="Heb-0w-EDE">
                                         <rect key="frame" x="8.6666666666666572" y="0.0" width="200" height="160"/>
@@ -78,7 +80,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Jrz-5R-K4z" userLabel="Temperature">
-                                        <rect key="frame" x="0.0" y="180.00000000000003" width="217" height="95.999999999999972"/>
+                                        <rect key="frame" x="0.0" y="179.99999999999997" width="217" height="96.000000000000028"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bL3-X8-e6C">
                                                 <rect key="frame" x="0.0" y="0.0" width="155" height="96"/>
@@ -110,10 +112,10 @@
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urh-Bn-w3g">
-                                        <rect key="frame" x="63.999999999999993" y="296" width="89.333333333333314" height="36.666666666666686"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urh-Bn-w3g">
+                                        <rect key="frame" x="63.999999999999993" y="296" width="89.333333333333314" height="50"/>
                                         <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="30"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.43529411759999997" green="0.76078431369999999" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -170,7 +172,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="o5Q-Cz-B4c">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.0" green="0.40243597437210882" blue="1" alpha="0.15425807119205298" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="citiesViewCell" id="nsy-8Q-yxn">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -179,6 +181,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.44313728810000003" green="0.48627454040000001" blue="0.90588235859999999" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

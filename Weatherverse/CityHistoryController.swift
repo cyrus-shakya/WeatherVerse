@@ -17,11 +17,11 @@ class CityHistoryController: UIViewController {
         super.viewDidLoad()
 
         citiesTableView.dataSource = self
+        citiesTableView.delegate = self
             }
         }
 
-
-        extension CityHistoryController: UITableViewDataSource{
+        extension CityHistoryController: UITableViewDataSource,UITableViewDelegate{
             
             func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
                 return citiesArray.count
@@ -43,5 +43,10 @@ class CityHistoryController: UIViewController {
                    
                    return cell
                }
+            
+            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        
 
 }

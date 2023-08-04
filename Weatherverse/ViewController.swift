@@ -61,8 +61,20 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         // Do any additional setup after loading the view.
         txtSearch.delegate = self
         
+        initWeatherIcon()
+        
         setupLocationManager()
     }
+    
+    func initWeatherIcon(){
+        // ocnfiguration of colors in imgIcons
+        let config = UIImage.SymbolConfiguration(paletteColors: [.cyan, .systemTeal])
+        weatherIcon.preferredSymbolConfiguration = config
+        
+        // setting img from system SF symbols
+        weatherIcon.image = UIImage(systemName: "cloud.sun.fill")
+    }
+    
     
     //    current location
     func setupLocationManager() {
@@ -97,7 +109,7 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
     
     var searchHistory = SearchHistory(history: [])
     
-    func parseJoke(data: Data) -> CurrentLocationWrapper? {
+    func parseWeather(data: Data) -> CurrentLocationWrapper? {
         let decoder = JSONDecoder()
         var wrapper: CurrentLocationWrapper?
         
@@ -123,7 +135,7 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         }
         
         
-        if let locationWrapper = parseJoke(data: data){
+        if let locationWrapper = parseWeather(data: data){
             //            print(locationWrapper.location.name)
             
             let weatherData = WeatherData(
@@ -142,9 +154,35 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
                 self.weatherCondition.text = weatherData.conditionText
                 self.cityLabel.text = weatherData.locationName
                 self.bgImg.image = UIImage(named: locationWrapper.current.is_day == 0 ? "night_time": "bg")
+                self.changeWeatherIcon(locationWrapper.current.condition.code)
             }
             
         }
+    }
+    
+    func changeWeatherIcon(_ weatherCode:Int){
+        
+        var conditionName: String{
+             switch weatherCode{
+             case 1000:
+                 return "sun.max.fill"
+             case 1003...1009:
+                 return "cloud.fill"
+             case 1030:
+                 return "cloud.fog.fill"
+             case 1183...1207:
+                 return "cloud.rain.fill"
+             case 1210...1237:
+                 return "cloud.snow.fill"
+             case 1273...1282:
+                 return "cloud.bolt.rain"
+             default:
+                 return "cloud.sun.fill"
+             }
+         }
+        
+        weatherIcon.image = UIImage(systemName: conditionName)
+        
     }
     
     
@@ -159,9 +197,6 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         return URL(string: endPoint) ?? URL(string: "")!
     }
     
-    
-    
-
     
     func searchWeather(_ txtSearch: String){
         // 1. Create URL
