@@ -38,6 +38,11 @@ extension CityHistoryController: UITableViewDataSource,UITableViewDelegate{
         content.text = city.locationName
         content.secondaryText = String(city.tempInCelsius) + "°C"
         
+        let config = UIImage.SymbolConfiguration(paletteColors: [.gray, .systemTeal])
+        let symbolName :String = String(changeWeatherIcon(city.conditionCode))
+        let symbolImage = UIImage(systemName:symbolName, withConfiguration: config)
+        content.image = symbolImage
+        
         cell.contentConfiguration = content
         
         return cell
@@ -47,5 +52,30 @@ extension CityHistoryController: UITableViewDataSource,UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    
+    func changeWeatherIcon(_ weatherCode:Int)-> String{
+        
+        var conditionName: String{
+            switch weatherCode{
+            case 1000:
+                return "sun.max.fill"
+            case 1003...1009:
+                return "cloud.fill"
+            case 1030:
+                return "cloud.fog.fill"
+            case 1183...1207:
+                return "cloud.rain.fill"
+            case 1210...1237:
+                return "cloud.snow.fill"
+            case 1273...1282:
+                return "cloud.bolt.rain"
+            default:
+                return "cloud.sun.fill"
+            }
+        }
+        
+        return conditionName;
+        
+    }
     
 }
