@@ -53,8 +53,6 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         var history:[WeatherDetail]
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -111,7 +109,6 @@ class ViewController: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         let url: URL? = getUrl(txtSearch)
         
         // 2. Create URLsession
-        
         let urlSession=URLSession(configuration: .default)
         
         // 3. Create task for URLsession

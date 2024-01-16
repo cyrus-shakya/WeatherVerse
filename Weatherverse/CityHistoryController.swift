@@ -27,6 +27,7 @@ extension CityHistoryController: UITableViewDataSource,UITableViewDelegate{
         return citiesArray.count
     }
     
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
