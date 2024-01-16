@@ -3,13 +3,13 @@ Welcome to WeatherVerse, your go-to iOS application for staying updated on the l
 
 ## App Features
 
-**Real-time Weather Updates**
+**Real-time Weather Updates**:
 Stay in the know with real-time weather updates. Our app fetches the latest data to provide you with accurate and up-to-date information about temperature and weather conditions.
 
-**Location-Based Forecast**
+**Location-Based Forecast**:
 WeatherApp automatically detects your location, giving you a personalized weather forecast. 
 
-**Multiple Locations**
+**Multiple Locations**:
 Add and track weather conditions in multiple locations. Whether you're planning a trip or just curious about the weather elsewhere, WeatherVerse has you covered.
 
 
