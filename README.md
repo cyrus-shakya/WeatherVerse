@@ -1,10 +1,7 @@
-## App Name
-WeatherVerse 
+## WeatherVerse - Your Personal Weather Companion 
+Welcome to WeatherVerse, your go-to iOS application for staying updated on the latest weather conditions. This app provides a seamless and user-friendly experience to help you plan your day and stay informed about the weather in your location and search for specific location.
 
-## App Description
-WeatherVerse, an iOS application designed for viewing weather informtaion of your current location
-
-## List of App Features
+## App Features
 
 **Medication Management:**
 - [x] Add New Location: Easily add new medications to your list.
