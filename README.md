@@ -1,7 +1,7 @@
 ## WeatherVerse - Your Personal Weather Companion 
-Welcome to WeatherVerse, your go-to iOS application for staying updated on the latest weather conditions. This app provides a seamless and user-friendly experience to help you plan your day and stay informed about the weather in your location and search for specific location.
+Welcome to WeatherVerse, your go-to iOS application for staying updated on the latest weather conditions. This app provides a seamless and user-friendly experience to help you plan your day and stay informed about the weather in your location and search for specific location. This project is developed using Swift within the Storyboard framework, WeatherVerse stands as the final project for my second semester in Fanshawe College's Mobile Application Development course.
 
-## App Features
+## App Features:
 
 ### 1. Real-time Weather Updates
 Stay in the know with real-time weather updates. Our app fetches the latest data to provide you with accurate and up-to-date information about temperature and weather conditions.
